@@ -9,6 +9,7 @@ export const Container = styled.View`
 export const Body = styled.View`
   background: #fff;
   padding: 4%;
+  width: 100%;
   border: 1px solid #dddddd;
   border-radius: 4px;
 `;

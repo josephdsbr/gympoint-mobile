@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 
 import Background from '~/components/Background';
-import {CheckingButton, CheckingContainer} from './styles';
+import {Container, CheckingButton, CheckinContainer} from './styles';
 
 import CheckinItem from '~/components/CheckinItem';
 
@@ -20,11 +20,11 @@ export default function Checkin() {
       const response = await api.get(`/students/${id}/checkins`);
       setChecking(response.data);
     }
-
-    loadChecking();
+    
+    loadChecking()
   }, []);
 
-  async function handleSignOut() {
+  async function handleCheckIn() {
     try {
       await api.post(`/students/${id}/checkings`);
       Alert.alert('Succeso', 'Checkin feito com sucesso');
@@ -35,12 +35,14 @@ export default function Checkin() {
 
   return (
     <Background>
-      <CheckingContainer>
-        <CheckingButton onPress={handleSignOut}>Novo check-in</CheckingButton>
-        {checking.map(x => (
-          <CheckinItem id={x.id} data={x} />
-        ))}
-      </CheckingContainer>
+      <Container>
+        <CheckingButton onPress={handleCheckIn}>Novo check-in</CheckingButton>
+        <CheckinContainer
+          data={checking}
+          keyExtractor={item => String(item)}
+          renderItem={({item}) => <CheckinItem id={item.id} data={item} />}
+        />
+      </Container>
     </Background>
   );
 }

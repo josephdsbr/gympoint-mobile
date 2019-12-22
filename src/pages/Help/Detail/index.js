@@ -52,7 +52,7 @@ export default function Detail({navigation}) {
             <QuestionContent>{question.question}</QuestionContent>
           </Question>
           <Answer answered={data.answer !== null}>
-            <AnswerHeader >
+            <AnswerHeader>
               <AnswerTitle>RESPOSTA</AnswerTitle>
             </AnswerHeader>
             <AnswerContent>{question.answer}</AnswerContent>
